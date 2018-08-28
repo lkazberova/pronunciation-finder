@@ -1,0 +1,34 @@
+{
+  "name": "OxfordDictionary",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "cheerio": "^1.0.0-rc.2",
+    "commander": "^2.17.1",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  },
+  "scripts": {
+    "prettier": "prettier --write \"**/*.js\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "devDependencies": {
+    "husky": "^1.0.0-rc.6",
+    "lint-staged": "^7.1.0",
+    "prettier": "^1.12.1"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run prettier",
+      "git add"
+    ]
+  }
+}
