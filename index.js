@@ -19,8 +19,7 @@ const filesPath = path.normalize(program.path);
 const words = program.args;
 
 console.log(`Save to path: ${filesPath}`);
-// return;
-if (!path) return;
+if (!filesPath) return;
 const parseOxford = (word) =>
   new Promise((resolve, reject) => {
     const options = {
