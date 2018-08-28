@@ -7,7 +7,7 @@ An application for getting audio files with pronunciation from Oxford Learner's 
 npm install
 ```
 
-# #Usage
+## Usage
 
 ```bash
 node ./index.js car apple window --path /home/user/downloads
