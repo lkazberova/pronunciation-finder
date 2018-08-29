@@ -1,5 +1,7 @@
 # pronunciation-finder
-An application for getting audio files with pronunciation from Oxford Learner's Dictionaries
+An application for getting audio files with pronunciation from
+* [Oxford Learner's Dictionaries](https://www.oxfordlearnersdictionaries.com/definition/english/)
+* [Cambridge Dictionary](https://dictionary.cambridge.org/us/dictionary)
 
 ## Installation
 
@@ -10,11 +12,29 @@ If you don't have npm please install it https://docs.npmjs.com/getting-started/i
 ## Usage
 
 ```bash
-pronunciation-finder car apple window --path /home/user/downloads
+pronunciation-finder car apple window
 ```
-OR if you have a list with words
+OR if you have a file with words
 ```bash
-pronunciation-finder $(cat words.txt) --path /home/user/downloads
+pronunciation-finder $(cat words.txt)
+```
+
+### Options
+```text
+$ pronunciation-finder --help
+
+  Usage: pronunciation-finder [options] <words>
+
+  An application for getting transcription and audio from Oxford Advanced Learner’s Dictionary
+
+  Options:
+
+    -v, --version               output the version number
+    -p, --path [value]          Path for downloaded files (default: ./)
+    -d, --dictionary [value]    Dictionary [oxford, cambridge] (default: cambridge)
+    -h, --help                  output usage information
+
+
 ```
 
 ## Output
