@@ -1,6 +1,12 @@
 {
   "name": "pronunciation-finder",
-  "version": "0.1.3",
+  "description": "An application for getting audio files with pronunciation from public dictionaries",
+  "homepage": "https://github.com/lkazberova/pronunciation-finder#readme",
+  "author": {
+    "name": "Leisan Kazberova",
+    "url": "http://github.com/lkazberova"
+  },
+  "version": "0.1.4",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
@@ -11,6 +17,16 @@
     "path": "^0.12.7",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
+  },
+  "keywords": [
+    "dictionary",
+    "terminal",
+    "pronunciation",
+    "transcription"
+  ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/lkazberova/pronunciation-finder.git"
   },
   "bin": {
     "pronunciation-finder": "./index.js"
