@@ -1,20 +1,20 @@
-# oxford-dictionary-finder
+# pronunciation-finder
 An application for getting audio files with pronunciation from Oxford Learner's Dictionaries
 
 ## Installation
 
 ```bash
-npm install
+npm install -g pronunciation-finder
 ```
 
 ## Usage
 
 ```bash
-node ./index.js car apple window --path /home/user/downloads
+pronunciation-finder car apple window --path /home/user/downloads
 ```
 OR if you have a list with words
 ```bash
-node ./index.js $(cat words.txt) --path /home/user/downloads
+pronunciation-finder $(cat words.txt) --path /home/user/downloads
 ```
 
 ## Output
