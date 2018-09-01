@@ -32,6 +32,7 @@ $ pronunciation-finder --help
     -v, --version               output the version number
     -p, --path [value]          Path for downloaded files (default: ./)
     -d, --dictionary [value]    Dictionary [oxford, cambridge] (default: cambridge)
+    -g, --gap [value]           Add gap [value] sec to the end of file (default: 0)
     -h, --help                  output usage information
 
 
