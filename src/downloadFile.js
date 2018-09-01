@@ -9,6 +9,9 @@ module.exports = (url, filePath) =>
       encoding: null
     };
     console.log(`Start download ${url}`);
+    if (!url) {
+      return;
+    }
     rp.get(options)
       .then((res) => {
         const buffer = Buffer.from(res, 'utf8');
@@ -16,5 +19,8 @@ module.exports = (url, filePath) =>
         console.log(`\nDownloaded ${url} to ${path.basename(filePath)}`);
         resolve(filePath);
       })
-      .catch((error) => reject(error));
+      .catch((error) => {
+        console.log(`${url} has a problem`);
+        resolve();
+      });
   });

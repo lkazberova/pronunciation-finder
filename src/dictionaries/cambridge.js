@@ -7,24 +7,31 @@ module.exports = (word) =>
       uri: `https://dictionary.cambridge.org/us/dictionary/english/${word}`,
       transform: (body) => cheerio.load(body)
     };
-    console.log(`Cambridge ${word}`);
+    console.log(`\n${word}`);
     rp(options)
       .then(($) => {
         const title = $('div.di-title span.hw')
           .first()
           .text();
-        const main_transcription = $('span.ipa')
+        const main_transcription = $('span.us span.ipa')
           .first()
           .text();
-        const main_mp3 =
-          'https://dictionary.cambridge.org/' +
-          $('span.audio_play_button')
-            .first()
-            .data('src-mp3');
+        const main_mp3 = $('span.us span.audio_play_button')
+          .first()
+          .data('src-mp3');
 
-        console.log(`Cambridge ${word} ${main_transcription}`);
-
-        resolve({ word, title, main_transcription, main_mp3 });
+        if (!main_mp3) {
+          console.log(`${word}\t\tnot found\t\t!!!`);
+          resolve({});
+          return;
+        }
+        console.log(`${word}\t\t${main_transcription}`);
+        resolve({
+          word,
+          title,
+          main_transcription,
+          main_mp3: 'https://dictionary.cambridge.org/' + main_mp3
+        });
       })
       .catch((error) => {
         console.log(`Request error ${word}`, error);

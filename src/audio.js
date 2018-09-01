@@ -9,6 +9,7 @@ module.exports.addGap = (file, gap) => {
   return new Promise((resolve, reject) =>
     Audio.load(file).then((audio) => {
       audio.pad(gap);
+      console.log(`${file} gap size ${gap}`);
       const format = pcm.format(audio.buffer.join());
       // create the Encoder instance
       const encoder = new lame.Encoder({
