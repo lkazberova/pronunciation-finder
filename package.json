@@ -10,11 +10,15 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "audio": "audiojs/audio",
     "bluebird": "^3.5.1",
+    "buffer-to-stream": "^1.0.0",
     "cheerio": "^1.0.0-rc.2",
     "commander": "^2.17.1",
     "fs": "^0.0.1-security",
+    "lame": "^1.2.4",
     "path": "^0.12.7",
+    "pcm-util": "^3.0.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
   },
@@ -25,8 +29,8 @@
     "transcription"
   ],
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/lkazberova/pronunciation-finder.git"
+    "type": "git",
+    "url": "https://github.com/lkazberova/pronunciation-finder.git"
   },
   "bin": {
     "pronunciation-finder": "./index.js"

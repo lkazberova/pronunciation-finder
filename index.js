@@ -2,6 +2,7 @@
 const parseOxford = require('./src/dictionaries/oxford');
 const parseCambridge = require('./src/dictionaries/cambridge');
 const downloadPromise = require('./src/downloadFile');
+const { addGap } = require('./src/audio');
 
 const rp = require('request-promise');
 const fs = require('fs');
@@ -17,32 +18,46 @@ program
     'An application for getting transcription and audio from Oxford Advanced Learner’s Dictionary'
   )
   .usage('[options] <words>')
-  .option('-p, --path [value]', 'Path for downloaded files', path.resolve('./'))
+  .option(
+    '-p, --path [value]',
+    'Path for downloaded files',
+    path.resolve(__dirname)
+  )
   .option(
     '-d, --dictionary [value]',
     'Dictionary [oxford, cambridge]',
     /^(oxford|cambridge)$/i,
     'cambridge'
   )
+  .option('-g', '--gap [value]', 'Add gap [value] sec to the end of file', 0)
   .parse(process.argv);
 
-const filesPath = path.normalize(program.path);
+const destination = path.normalize(program.path);
 const words = program.args;
 const parser = program.dictionary === 'oxford' ? parseOxford : parseCambridge;
-
-console.log(`Save to path: ${filesPath}`);
-if (!filesPath) return;
+const gap = program.gap;
+console.log(`Save to path: ${destination}`);
+if (!destination) return;
+const constructFilePath = (
+  destination,
+  { word, transcription, main_transcription, mp3, main_mp3, title }
+) => {
+  return path.join(
+    destination,
+    `${transcription ? word : title} | ${transcription ||
+      main_transcription} |.mp3`
+  );
+};
 bluebird
   .mapSeries(words, parser)
   .then((data) => {
     return bluebird.mapSeries(
       data.filter((item) => item.main_mp3 || item.mp3),
-      ({ word, transcription, main_transcription, mp3, main_mp3, title }) =>
+      (result) =>
         downloadPromise(
-          mp3 || main_mp3,
-          `${filesPath}/${transcription ? word : title} | ${transcription ||
-            main_transcription} |.mp3`
-        )
+          result.mp3 || result.main_mp3,
+          constructFilePath(destination, result)
+        ).then((file) => (gap > 0 ? addGap(file) : file))
     );
   })
   .then((result) => console.log('Finish'))
