@@ -20,7 +20,7 @@ module.exports = (url, filePath) =>
         resolve(filePath);
       })
       .catch((error) => {
-        console.log(`${url} has a problem`);
+        console.log(`${url} has a problem`, error.message);
         resolve();
       });
   });

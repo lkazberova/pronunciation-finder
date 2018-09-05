@@ -1,35 +1,38 @@
 const fs = require('fs');
-const Audio = require('audio');
+const Audio = require('audio-2.0.0');
 // const encode = require('audio-encode/mp3')
-const lame = require('lame');
-const pcm = require('pcm-util');
-const toStream = require('buffer-to-stream');
-
+const lamejs = require('lamejs');
+function encodeMono(channels, sampleRate, samples) {
+  var buffers = [];
+  var mp3enc = new lamejs.Mp3Encoder(channels, sampleRate, 128 / 2);
+  var remaining = samples.length;
+  var maxSamples = 1152;
+  var length = 0;
+  for (var i = 0; remaining >= maxSamples; i += maxSamples) {
+    var mono = samples.subarray(i, i + maxSamples);
+    var mp3buf = mp3enc.encodeBuffer(mono);
+    if (mp3buf.length > 0) {
+      length += mp3buf.length;
+      buffers.push(Buffer.from(mp3buf));
+    }
+    remaining -= maxSamples;
+  }
+  var d = mp3enc.flush();
+  if (d.length > 0) {
+    length += d.length;
+    buffers.push(Buffer.from(d));
+  }
+  var mp3data = Buffer.concat(buffers, length);
+  return mp3data;
+}
 module.exports.addGap = (file, gap) => {
   return new Promise((resolve, reject) =>
     Audio.load(file).then((audio) => {
       audio.pad(gap);
       console.log(`${file} gap size ${gap}`);
-      const format = pcm.format(audio.buffer.join());
-      // create the Encoder instance
-      const encoder = new lame.Encoder({
-        ...format,
-        // bitRate: 63,
-        outSampleRate: 44100,
-        mode: lame.MONO
-      });
-
-      const data = pcm.toArrayBuffer(
-        audio.read({ format: 'audiobuffer' }),
-        format
-      );
-      let buffer = Buffer.from(data);
-      toStream(buffer)
-        .pipe(encoder)
-        .pipe(fs.createWriteStream(file))
-        .on('close', function() {
-          resolve();
-        });
+      const samples = audio.read({ format: 'int16' });
+      const mp3Data = encodeMono(audio.channels, audio.sampleRate, samples);
+      fs.writeFile(file, mp3Data, (err) => resolve(file));
     })
   );
 };

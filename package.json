@@ -6,21 +6,22 @@
     "name": "Leisan Kazberova",
     "url": "http://github.com/lkazberova"
   },
-  "version": "0.3.5",
+  "version": "0.4.0",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "audio": "audiojs/audio",
+    "audio-2.0.0": "^2.0.0",
     "bluebird": "^3.5.1",
-    "buffer-to-stream": "^1.0.0",
     "cheerio": "^1.0.0-rc.2",
     "commander": "^2.17.1",
     "fs": "^0.0.1-security",
-    "lame": "^1.2.4",
+    "lamejs": "^1.2.0",
     "path": "^0.12.7",
-    "pcm-util": "^3.0.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
+  },
+  "pkg": {
+    "scripts": "*.js"
   },
   "keywords": [
     "dictionary",

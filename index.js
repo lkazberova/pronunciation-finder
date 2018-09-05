@@ -10,7 +10,7 @@ const bluebird = require('bluebird');
 const path = require('path');
 
 program
-  .version('0.3.5', '-v, --version')
+  .version('0.4.0', '-v, --version')
   .description(
     'An application for getting transcription and audio from Oxford Advanced Learner’s Dictionary'
   )
@@ -42,6 +42,11 @@ const constructFilePath = (
   { word, transcription, main_transcription, mp3, main_mp3, title }
 ) => {
   const name = word === title ? word : title;
+  if (process.platform === 'win32')
+    return path.join(
+      destination,
+      `${name} ${transcription || main_transcription}.mp3`
+    );
   return path.join(
     destination,
     `${name} | ${transcription || main_transcription} |.mp3`
