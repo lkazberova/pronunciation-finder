@@ -36,6 +36,7 @@ $ pronunciation-finder --help
     -p, --path [value]          Path for downloaded files (default: ./)
     -d, --dictionary [value]    Dictionary [oxford, cambridge] (default: cambridge)
     -g, --gap [value]           Add gap [value] sec to the end of file (default: 0)
+    ---play                     Autoplay files after downloading (default: false)
     -h, --help                  output usage information
 
 
