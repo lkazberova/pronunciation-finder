@@ -17,6 +17,7 @@
     "fs": "^0.0.1-security",
     "lamejs": "^1.2.0",
     "path": "^0.12.7",
+    "play-sound": "^1.1.2",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
   },

@@ -2,6 +2,7 @@
 const parseOxford = require('./src/dictionaries/oxford');
 const parseCambridge = require('./src/dictionaries/cambridge');
 const downloadPromise = require('./src/downloadFile');
+const autoplayFile = require('./src/autoplay');
 const { addGap } = require('./src/audio');
 
 const program = require('commander');
@@ -23,6 +24,7 @@ program
     'cambridge'
   )
   .option('-g, --gap [value]', 'Add gap [value] sec to the end of file', 0)
+  .option('--play', 'Auto play files after downloading', false)
   .option(
     '-c, --concurrency [value]',
     'Indicate how much process will start',
@@ -35,6 +37,7 @@ const words = program.args;
 const parser = program.dictionary === 'oxford' ? parseOxford : parseCambridge;
 const gap = program.gap;
 const concurrency = program.concurrency;
+const autoplay = program.play;
 console.log(`Save to path: ${destination}, concurrency: ${concurrency}`);
 if (!destination) return;
 const constructFilePath = (
@@ -54,8 +57,8 @@ const constructFilePath = (
 };
 bluebird
   .map(words, parser, { concurrency: +concurrency })
-  .then((data) => {
-    return bluebird.map(
+  .then((data) =>
+    bluebird.map(
       data.filter((item) => item.main_mp3 || item.mp3),
       (result) =>
         downloadPromise(
@@ -63,7 +66,13 @@ bluebird
           constructFilePath(destination, result)
         ).then((file) => (gap > 0 && file ? addGap(file, +gap) : file)),
       { concurrency: +concurrency }
-    );
-  })
+    )
+  )
+  .then(
+    (files) =>
+      autoplay
+        ? bluebird.mapSeries(files.filter((file) => !!file), autoplayFile)
+        : files
+  )
   .then((result) => console.log('Finish'))
   .catch((error) => console.log('Error', error));
