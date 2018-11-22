@@ -11,9 +11,9 @@ const bluebird = require('bluebird');
 const path = require('path');
 
 program
-  .version('0.5.0', '-v, --version')
+  .version('0.5.1', '-v, --version')
   .description(
-    'An application for getting transcription and audio from Oxford Advanced Learner’s Dictionary'
+    'An application for getting transcription and audio from Oxford Advanced Learner’s Dictionary, Cambridge Dictionary'
   )
   .usage('[options] <words>')
   .option('-p, --path [value]', 'Path for downloaded files', path.resolve('./'))

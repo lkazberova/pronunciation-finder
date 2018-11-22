@@ -28,7 +28,7 @@ $ pronunciation-finder --help
 
   Usage: pronunciation-finder [options] <words>
 
-  An application for getting transcription and audio from Oxford Advanced Learner’s Dictionary
+  An application for getting transcription and audio from Oxford Advanced Learner’s Dictionary, Cambridge Dictionary
 
   Options:
 
@@ -36,7 +36,7 @@ $ pronunciation-finder --help
     -p, --path [value]          Path for downloaded files (default: ./)
     -d, --dictionary [value]    Dictionary [oxford, cambridge] (default: cambridge)
     -g, --gap [value]           Add gap [value] sec to the end of file (default: 0)
-    ---play                     Autoplay files after downloading (default: false)
+        --play                  Autoplay files after downloading (default: false)
     -h, --help                  output usage information
 
 
@@ -44,7 +44,7 @@ $ pronunciation-finder --help
 
 ## Output
 
-Files with name like `everything | ˈevriθɪŋ |.mp3`
+Files with a name like `everything | ˈevriθɪŋ |.mp3`
 
 ## Update
 
