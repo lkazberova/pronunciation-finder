@@ -16,9 +16,9 @@ module.exports = (word) =>
         const main_transcription = $('span.us span.ipa')
           .first()
           .text();
-        const main_mp3 = $('span.us span.audio_play_button')
+        const main_mp3 = $('span.us source')
           .first()
-          .data('src-mp3');
+          .attr('src');
 
         if (!main_mp3) {
           console.log(`${word}\t\tnot found\t\t!!!`);

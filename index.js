@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-const parseOxford = require('./src/dictionaries/oxford');
-const parseCambridge = require('./src/dictionaries/cambridge');
+const getParserByName = require('./src/dictionaries').getParserByName;
 const downloadPromise = require('./src/downloadFile');
 const autoplayFile = require('./src/autoplay');
 const { addGap } = require('./src/audio');
@@ -11,7 +10,7 @@ const bluebird = require('bluebird');
 const path = require('path');
 
 program
-  .version('0.5.3', '-v, --version')
+  .version('0.5.4', '-v, --version')
   .description(
     'An application for getting transcription and audio from Oxford Advanced Learner’s Dictionary, Cambridge Dictionary'
   )
@@ -34,7 +33,7 @@ program
 
 const destination = path.normalize(program.path);
 const words = program.args;
-const parser = program.dictionary === 'oxford' ? parseOxford : parseCambridge;
+const parser = getParserByName(program.dictionary);
 const gap = program.gap;
 const concurrency = program.concurrency;
 const autoplay = program.play;
