@@ -6,7 +6,7 @@ module.exports = (word) =>
     const options = {
       // uri: `https://www.oxfordlearnersdictionaries.com/definition/english/${word}_1`,
       uri: `https://www.oxfordlearnersdictionaries.com/search/english/direct/?q=${word}`,
-      transform: (body) => cheerio.load(body)
+      transform: (body) => cheerio.load(body),
     };
     console.log(`Start to parse ${word}`);
     rp(options)

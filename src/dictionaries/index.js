@@ -3,7 +3,7 @@ const oxford = require('./oxford');
 
 const dictionaries = {
   cambridge,
-  oxford
+  oxford,
 };
 
 module.exports.getParserByName = (name) => {

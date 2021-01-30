@@ -10,8 +10,7 @@ An application for getting audio files with pronunciation from
 npm install -g pronunciation-finder
 ```
 If you don't have npm please install it https://docs.npmjs.com/getting-started/installing-node#1-install-nodejs--npm
-### Windows
-Executable file can be downloaded from  https://github.com/lkazberova/pronunciation-finder/raw/master/build/win/pronunciation-finder.exe
+
 ## Usage
 
 ```bash

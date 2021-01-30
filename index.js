@@ -10,7 +10,7 @@ const bluebird = require('bluebird');
 const path = require('path');
 
 program
-  .version('0.5.5', '-v, --version')
+  .version('0.6.0', '-v, --version')
   .description(
     'An application for getting transcription and audio from Oxford Advanced Learner’s Dictionary, Cambridge Dictionary'
   )

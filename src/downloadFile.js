@@ -6,7 +6,7 @@ module.exports = (url, filePath) =>
   new Promise((resolve, reject) => {
     const options = {
       uri: url,
-      encoding: null
+      encoding: null,
     };
     console.log(`Start download ${url}`);
     if (!url) {
