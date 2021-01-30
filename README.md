@@ -50,6 +50,7 @@ Files with a name like `everything | ˈevriθɪŋ |.mp3`
 ```bash
 npm update -g pronunciation-finder
 ```
+Please verify that `pronunciation-finder -v` returns `0.7.0`, in some cases you have to uninstall and install for getting latest version
 
 ## Uninstall
 

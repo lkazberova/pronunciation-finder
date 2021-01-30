@@ -5,12 +5,13 @@ const autoplayFile = require('./src/autoplay');
 const { addGap } = require('./src/audio');
 
 const program = require('commander');
+const options = program.opts();
 
 const bluebird = require('bluebird');
 const path = require('path');
 
 program
-  .version('0.6.0', '-v, --version')
+  .version('0.7.0', '-v, --version')
   .description(
     'An application for getting transcription and audio from Oxford Advanced Learner’s Dictionary, Cambridge Dictionary'
   )
@@ -31,12 +32,12 @@ program
   )
   .parse(process.argv);
 
-const destination = path.normalize(program.path);
+const destination = path.normalize(options.path);
 const words = program.args;
-const parser = getParserByName(program.dictionary);
-const gap = program.gap;
-const concurrency = program.concurrency;
-const autoplay = program.play;
+const parser = getParserByName(options.dictionary);
+const gap = options.gap;
+const concurrency = options.concurrency;
+const autoplay = options.play;
 console.log(`Save to path: ${destination}, concurrency: ${concurrency}`);
 if (!destination) return;
 const constructFilePath = (
