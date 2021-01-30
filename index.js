@@ -10,7 +10,7 @@ const bluebird = require('bluebird');
 const path = require('path');
 
 program
-  .version('0.5.4', '-v, --version')
+  .version('0.5.5', '-v, --version')
   .description(
     'An application for getting transcription and audio from Oxford Advanced Learner’s Dictionary, Cambridge Dictionary'
   )
@@ -67,11 +67,13 @@ bluebird
       { concurrency: +concurrency }
     )
   )
-  .then(
-    (files) =>
-      autoplay
-        ? bluebird.mapSeries(files.filter((file) => !!file), autoplayFile)
-        : files
+  .then((files) =>
+    autoplay
+      ? bluebird.mapSeries(
+          files.filter((file) => !!file),
+          autoplayFile
+        )
+      : files
   )
   .then((result) => console.log('Finish'))
   .catch((error) => console.log('Error', error));
