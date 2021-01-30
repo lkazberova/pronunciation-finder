@@ -11,7 +11,7 @@ const bluebird = require('bluebird');
 const path = require('path');
 
 program
-  .version('0.7.0', '-v, --version')
+  .version('0.8.0', '-v, --version')
   .description(
     'An application for getting transcription and audio from Oxford Advanced Learner’s Dictionary, Cambridge Dictionary'
   )
@@ -19,8 +19,8 @@ program
   .option('-p, --path [value]', 'Path for downloaded files', path.resolve('./'))
   .option(
     '-d, --dictionary [value]',
-    'Dictionary [oxford, cambridge]',
-    /^(oxford|cambridge)$/i,
+    'Dictionary [oxford, cambridge, macmillan]',
+    /^(oxford|cambridge|macmillan)$/i,
     'cambridge'
   )
   .option('-g, --gap [value]', 'Add gap [value] sec to the end of file', 0)

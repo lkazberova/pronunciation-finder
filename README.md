@@ -2,6 +2,7 @@
 An application for getting audio files with pronunciation from
 * [Oxford Learner's Dictionaries](https://www.oxfordlearnersdictionaries.com/definition/english/)
 * [Cambridge Dictionary](https://dictionary.cambridge.org/us/dictionary)
+* [Macmillan Dictionary](https://www.macmillandictionary.com/us)
 
 ## Installation
 
@@ -33,7 +34,7 @@ $ pronunciation-finder --help
 
     -v, --version               output the version number
     -p, --path [value]          Path for downloaded files (default: ./)
-    -d, --dictionary [value]    Dictionary [oxford, cambridge] (default: cambridge)
+    -d, --dictionary [value]    Dictionary [oxford, cambridge, macmillan] (default: cambridge)
     -g, --gap [value]           Add gap [value] sec to the end of file (default: 0)
         --play                  Autoplay files after downloading (default: false)
     -h, --help                  output usage information
@@ -50,7 +51,7 @@ Files with a name like `everything | ˈevriθɪŋ |.mp3`
 ```bash
 npm update -g pronunciation-finder
 ```
-Please verify that `pronunciation-finder -v` returns `0.7.0`, in some cases you have to uninstall and install for getting latest version
+Please verify that `pronunciation-finder -v` returns `0.8.0`, in some cases you have to uninstall and install for getting latest version
 
 ## Uninstall
 
